@@ -1,0 +1,30 @@
+name: Kenna-Dependabot-Action
+
+on:
+  schedule:
+    - cron: "25 0 * * *"
+  push:
+    branches:
+      - main
+  workflow_dispatch:    
+  
+jobs:
+   Kenna-Action:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Toolkit Repo
+      uses: actions/checkout@v2
+      with:
+        repository: KennaSecurity/toolkit
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6
+    - name: Install dependencies
+      run: bundle install --without development test
+    - name:  Run Toolkit
+      run : exec bundle exec ruby toolkit.rb task=github_dependabot github_access_token=${github_token} kenna_connector_id=${kenna_connector_id} kenna_api_host=api.kennasecurity.com kenna_api_key=${kenna_api_key} -v
+      env:
+        github_token=: "${{secrets.GITHUB_TOKEN}}"
+        kenna_api_key=: "${{secrets.kenna_api_key}}"
+        kenna_connector_id=: "${{secrets.kenna_connector_id}}"

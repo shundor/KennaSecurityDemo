@@ -1,0 +1,32 @@
+name: Kenna-CodeScanning-Action
+
+on:
+  schedule:
+    - cron: "25 0 * * *"
+  push:
+    branches:
+      - main
+  workflow_dispatch:    
+  
+jobs:
+   Kenna-Action:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Toolkit Repo
+      uses: actions/checkout@v2
+      with:
+        repository: KennaSecurity/toolkit
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6
+    - name: Install dependencies
+      run: bundle install --without development test
+    - name:  Run Toolkit
+      run : exec bundle exec ruby toolkit.rb task=github_code_scanning github_token=${github_token} kenna_connector_id=${kenna_connector_id} github_username=${github_username} kenna_api_host=api.kennasecurity.com kenna_api_key=${kenna_api_key} github_repositories=${github_repositories} -v
+      env:
+        github_token=: "${{secrets.GITHUB_TOKEN}}"
+        github_username=: "${{secrets.github_username}}"
+        github_repositories=: "${{secrets.github_repositories}}"
+        kenna_api_key=: "${{secrets.kenna_api_key}}"
+        kenna_connector_id=: "${{secrets.kenna_connector_id}}"
