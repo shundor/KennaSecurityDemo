@@ -26,7 +26,7 @@ jobs:
       run : exec bundle exec ruby toolkit.rb task=github_code_scanning github_token=${github_token} kenna_connector_id=${kenna_connector_id} github_username=${github_username} kenna_api_host=api.kennasecurity.com kenna_api_key=${kenna_api_key} github_repositories=${github_repositories} -v
       env:
         github_token=: "${{secrets.GITHUB_TOKEN}}"
-        github_username=: "${{secrets.github_username}}"
-        github_repositories=: "${{secrets.github_repositories}}"
-        kenna_api_key=: "${{secrets.kenna_api_key}}"
-        kenna_connector_id=: "${{secrets.kenna_connector_id}}"
+        github_username=: "${{secrets.GH_USERNAME}}"
+        github_repositories=: "${{secrets.GH_REPOS}}"
+        kenna_api_key=: "${{secrets.KENNA_API_KEY}}"
+        kenna_connector_id=: "${{secrets.KENNA_CONNECTOR_ID}}"

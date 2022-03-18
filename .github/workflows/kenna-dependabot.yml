@@ -26,5 +26,5 @@ jobs:
       run : exec bundle exec ruby toolkit.rb task=github_dependabot github_access_token=${github_token} kenna_connector_id=${kenna_connector_id} kenna_api_host=api.kennasecurity.com kenna_api_key=${kenna_api_key} -v
       env:
         github_token=: "${{secrets.GITHUB_TOKEN}}"
-        kenna_api_key=: "${{secrets.kenna_api_key}}"
-        kenna_connector_id=: "${{secrets.kenna_connector_id}}"
+        kenna_api_key=: "${{secrets.KENNA_API_KEY}}"
+        kenna_connector_id=: "${{secrets.KENNA_CONNECTOR_ID}}"
