@@ -27,4 +27,4 @@ jobs:
       env:
         github_token=: "${{secrets.GITHUB_TOKEN}}"
         kenna_api_key=: "${{secrets.KENNA_API_KEY}}"
-        kenna_connector_id=: "${{secrets.KENNA_CONNECTOR_ID}}"
+        kenna_connector_id=: "${{secrets.KENNA_DEP_CONNECTOR_ID}}"
