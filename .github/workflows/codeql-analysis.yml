@@ -50,12 +50,20 @@ jobs:
         # Prefix the list here with "+" to use these queries and those in the config file.
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
-    # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
-    # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Build
-      run: |
-        cd $GITHUB_WORKSPACE
-        ./mvnw clean install
+    - name: set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'temurin'
+        java-version: 17
+        architecture: x64
+    - name: Cache Maven packages
+      uses: actions/cache@v2.1.7
+      with:
+        path: ~/.m2
+        key: ubuntu-latest-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ubuntu-latest-m2
+    - name: Test with Maven
+      run: mvn --no-transfer-progress install -DskipTests
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
