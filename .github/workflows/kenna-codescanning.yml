@@ -21,6 +21,8 @@ jobs:
       with:
         ruby-version: 2.7
         bundler-cache: true
+    - name: Install dependencies
+      run: bundle install --without development test
     - name:  Run Toolkit
       run : bundle exec ruby toolkit.rb task=github_code_scanning github_token=$GITHUB_TOKEN kenna_connector_id=158099 github_username=$GITHUB_USERNAME kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=$KENNA_API_KEY github_repositories=$GITHUB_REPOSITORIES
       env:
