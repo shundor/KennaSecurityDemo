@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: bundle install --without development test
     - name:  Run Toolkit
-      run : bundle exec ruby toolkit.rb task=github_dependabot github_token=$GITHUB_TOKEN github_organization_name=$GITHUB_ORGANIZATION_NAME kenna_connector_id=$KENNA_CONNECTOR_ID kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=$KENNA_API_KEY
+      run : bundle exec ruby toolkit.rb task=github_dependabot github_token=$GITHUB_TOKEN github_organization_name=$GITHUB_ORGANIZATION_NAME kenna_connector_id=158100 kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=$KENNA_API_KEY
       env:
         GITHUB_TOKEN=: "${{secrets.GH_TOKEN}}"
         GITHUB_ORGANIZATION_NAME=: "${{secrets.GH_ORG_NAME}}"
