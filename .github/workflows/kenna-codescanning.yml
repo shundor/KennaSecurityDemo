@@ -12,6 +12,7 @@ jobs:
    Kenna-Action:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Checkout Toolkit Repo
       uses: actions/checkout@v2
       with:
@@ -24,7 +25,8 @@ jobs:
       run: bundle install --without development test
     - name:  Run Toolkit
       run: |
-        /bin/bash "${GITHUB_WORKSPACE}/.github/script.sh"
+        chmod +x "${GITHUB_WORKSPACE}/scripts/launch.sh"
+        /bin/bash "${GITHUB_WORKSPACE}/scripts/launch.sh"
       env:
         GITHUB_TOKEN=: "${{secrets.GH_TOKEN}}"
         GITHUB_USERNAME=: "${{secrets.GH_USERNAME}}"
