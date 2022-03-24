@@ -30,4 +30,3 @@ jobs:
         USERNAME=: "${{secrets.GH_USERNAME}}"
         REPOSITORIES=: "${{secrets.GH_REPOS}}"
         KENNA_API_KEY=: "${{secrets.KENNA_API_KEY}}"
-        KENNA_CONNECTOR_ID=: "${{secrets.KENNA_CS_CONNECTOR_ID}}"
