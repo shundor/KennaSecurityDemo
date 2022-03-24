@@ -12,19 +12,8 @@ jobs:
    Kenna-Action:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Toolkit Repo
-      uses: actions/checkout@v2
+    - name:  Run Toolkit    
+      uses: addnab/docker-run-action@v3
       with:
-        repository: KennaSecurity/toolkit
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.6
-    - name: Install dependencies
-      run: bundle install --without development test
-    - name:  Run Toolkit
-      run : bundle exec ruby toolkit.rb task=github_dependabot github_token=$GITHUB_TOKEN github_organization_name=$GITHUB_ORGANIZATION_NAME kenna_connector_id=158100 kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=$KENNA_API_KEY
-      env:
-        GITHUB_TOKEN=: "${{secrets.GH_TOKEN}}"
-        GITHUB_ORGANIZATION_NAME=: "${{secrets.GH_ORG_NAME}}"
-        KENNA_API_KEY=: "${{secrets.KENNA_API_KEY}}"
+        image: kennasecurity/toolkit:latest
+        run:  bundle exec ruby toolkit.rb task=github_dependabot github_token=${{secrets.GH_TOKEN}} github_organization_name=${{secrets.GH_ORG_NAME}} kenna_connector_id=158100 kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=$${{secrets.KENNA_API_KEY}}
