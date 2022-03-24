@@ -16,4 +16,4 @@ jobs:
       uses: addnab/docker-run-action@v3
       with:
         image: kennasecurity/toolkit:latest
-        run:  bundle exec ruby toolkit.rb task=github_code_scanning github_token=${{secrets.GH_TOKEN}} kenna_connector_id=158099 github_username=${{secrets.GH_USERNAME}} kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=${{secrets.KENNA_API_KEY}} github_repositories=${{secrets.GH_REPOS}}
+        run:  echo ${{secrets.GH_TOKEN}};bundle exec ruby toolkit.rb task=github_code_scanning github_token=${{secrets.GH_TOKEN}} kenna_connector_id=158099 github_username=${{secrets.GH_USERNAME}} kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=${{secrets.KENNA_API_KEY}} github_repositories=${{secrets.GH_REPOS}}
