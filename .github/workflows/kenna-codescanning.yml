@@ -23,10 +23,10 @@ jobs:
     - name: Install dependencies
       run: bundle install --without development test
     - name:  Run Toolkit
-      run: |
-        bundle exec ruby toolkit.rb task=github_code_scanning github_token=$TOKEN kenna_connector_id=158099 github_username=$USERNAME kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=$KENNA_API_KEY github_repositories=$REPOSITORIES
       env:
         TOKEN=: "${{secrets.GH_TOKEN}}"
         USERNAME=: "${{secrets.GH_USERNAME}}"
         REPOSITORIES=: "${{secrets.GH_REPOS}}"
         KENNA_API_KEY=: "${{secrets.KENNA_API_KEY}}"
+      run: |
+        docker pull kennasecurity/toolkit && docker run -it kennasecurity/toolkit task=github_code_scanning github_token=$TOKEN kenna_connector_id=158099 github_username=$USERNAME kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=$KENNA_API_KEY github_repositories=$REPOSITORIES
