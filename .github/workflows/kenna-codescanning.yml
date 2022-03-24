@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: bundle install --without development test
     - name:  Run Toolkit
-    - run: |
+      run: |
         chmod +x "${GITHUB_WORKSPACE}/.github/script.sh"
         "${GITHUB_WORKSPACE}/.github/script.sh"
       env:
