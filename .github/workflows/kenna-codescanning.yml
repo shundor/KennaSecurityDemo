@@ -17,4 +17,4 @@ jobs:
       with:
         image: kennasecurity/toolkit:latest
         options: task=github_code_scanning github_token=${{secrets.GH_TOKEN}}  kenna_connector_id=158099 github_username=${{secrets.GH_USERNAME}} kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=${{secrets.KENNA_API_KEY}} github_repositories=${{secrets.GH_REPOS}}
-      run: echo "hello world"
+        run: echo "hello world"
