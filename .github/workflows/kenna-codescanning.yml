@@ -24,8 +24,7 @@ jobs:
       run: bundle install --without development test
     - name:  Run Toolkit
       run: |
-        chmod +x "${GITHUB_WORKSPACE}/.github/script.sh"
-        "${GITHUB_WORKSPACE}/.github/script.sh"
+        /bin/bash "${GITHUB_WORKSPACE}/.github/script.sh"
       env:
         GITHUB_TOKEN=: "${{secrets.GH_TOKEN}}"
         GITHUB_USERNAME=: "${{secrets.GH_USERNAME}}"
