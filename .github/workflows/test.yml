@@ -1,4 +1,4 @@
-name: Kenna-Dependabot-Action
+name: Test
 
 on:
   schedule:
@@ -23,8 +23,4 @@ jobs:
     - name: Install dependencies
       run: bundle install --without development test
     - name:  Run Toolkit
-      run : bundle exec ruby toolkit.rb task=github_dependabot github_token=$GITHUB_TOKEN github_organization_name=$GITHUB_ORGANIZATION_NAME kenna_connector_id=158100 kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=$KENNA_API_KEY
-      env:
-        GITHUB_TOKEN=: "${{secrets.GH_TOKEN}}"
-        GITHUB_ORGANIZATION_NAME=: "${{secrets.GH_ORG_NAME}}"
-        KENNA_API_KEY=: "${{secrets.KENNA_API_KEY}}"
+      run : exec bundle exec ruby toolkit.rb task=github_code_scanning github_token=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 kenna_connector_id=158099 github_username=abirismyname kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=5uP-x3fnttf6SEjyDBLBr38Lhjvct8Ma394tyNN3RHeYYpA4oNMPZ3cr5ww-Lx_- github_repositories=shundor/KennaSecurityDemo
