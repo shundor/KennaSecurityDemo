@@ -12,7 +12,6 @@ jobs:
    Kenna-Action:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: Checkout Toolkit Repo
       uses: actions/checkout@v2
       with:
@@ -25,11 +24,10 @@ jobs:
       run: bundle install --without development test
     - name:  Run Toolkit
       run: |
-        chmod +x "${GITHUB_WORKSPACE}/scripts/launch.sh"
-        /bin/bash "${GITHUB_WORKSPACE}/scripts/launch.sh"
+        bundle exec ruby toolkit.rb task=github_code_scanning github_token=$TOKEN kenna_connector_id=158099 github_username=$USERNAME kenna_api_host=api.sandbox.us.kennasecurity.com kenna_api_key=$KENNA_API_KEY github_repositories=$REPOSITORIES
       env:
-        GITHUB_TOKEN=: "${{secrets.GH_TOKEN}}"
-        GITHUB_USERNAME=: "${{secrets.GH_USERNAME}}"
-        GITHUB_REPOSITORIES=: "${{secrets.GH_REPOS}}"
+        TOKEN=: "${{secrets.GH_TOKEN}}"
+        USERNAME=: "${{secrets.GH_USERNAME}}"
+        REPOSITORIES=: "${{secrets.GH_REPOS}}"
         KENNA_API_KEY=: "${{secrets.KENNA_API_KEY}}"
         KENNA_CONNECTOR_ID=: "${{secrets.KENNA_CS_CONNECTOR_ID}}"
