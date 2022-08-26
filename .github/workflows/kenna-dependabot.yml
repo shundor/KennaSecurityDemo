@@ -15,8 +15,7 @@ jobs:
     - name: Checkout Toolkit Repo
       uses: actions/checkout@v2
       with:
-        repository: abirismyname/kennasecurity-toolkit
-        ref: update-github-connectors
+        repository: KennaSecurity/toolkit
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
